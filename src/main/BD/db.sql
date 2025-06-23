@@ -19,7 +19,7 @@ CREATE TABLE usuarios (
     data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE cuidadores (
+CREATE TABLE profissionais (
     id BIGINT PRIMARY KEY,
     usuario_id INT NOT NULL,
     experiencia_anos INT,
@@ -49,10 +49,10 @@ CREATE TABLE especialidades (
 );
 
 
-CREATE TABLE cuidador_especialidades (
-    cuidador_id BIGINT,
+CREATE TABLE profissional_especialidades (
+    profissional_id BIGINT,
     especialidade_id BIGINT,
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id) ON DELETE CASCADE,
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id) ON DELETE CASCADE,
     FOREIGN KEY (especialidade_id) REFERENCES especialidades(id) ON DELETE CASCADE
 );
 
@@ -100,7 +100,7 @@ CREATE TABLE enderecos (
 
 CREATE TABLE agendamentos (
     id bigint PRIMARY KEY AUTO_INCREMENT,
-    cuidador_id INT NOT NULL,
+    profissional_id INT NOT NULL,
     idoso_id INT NOT NULL,
     responsavel_id INT NOT NULL,
     endereco_atendimento_id INT NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE agendamentos (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_cancelamento TIMESTAMP NULL,
     motivo_cancelamento TEXT,
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id),
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id),
     FOREIGN KEY (idoso_id) REFERENCES idosos(id),
     FOREIGN KEY (responsavel_id) REFERENCES usuarios(id),
     FOREIGN KEY (endereco_atendimento_id) REFERENCES enderecos(id)
@@ -122,22 +122,22 @@ CREATE TABLE agendamentos (
 
 CREATE TABLE disponibilidade (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    cuidador_id INT NOT NULL,
+    profissional_id INT NOT NULL,
     dia_semana ENUM('domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado') NOT NULL,
     hora_inicio TIME NOT NULL,
     hora_fim TIME NOT NULL,
     ativo BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id) ON DELETE CASCADE
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id) ON DELETE CASCADE
 );
 
 -- Tabela de indisponibilidades específicas
 CREATE TABLE indisponibilidades (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    cuidador_id INT NOT NULL,
+    profissional_id INT NOT NULL,
     data_inicio DATETIME NOT NULL,
     data_fim DATETIME NOT NULL,
     motivo VARCHAR(255),
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id) ON DELETE CASCADE
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id) ON DELETE CASCADE
 );
 
 
@@ -170,15 +170,15 @@ CREATE TABLE mensagens (
 );
 
 
-CREATE TABLE documentos_cuidador (
+CREATE TABLE documentos_profissional (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    cuidador_id INT NOT NULL,
+    profissional_id INT NOT NULL,
     tipo_documento ENUM('rg', 'cpf', 'certidao_antecedentes', 'comprovante_endereco', 'certificado_curso', 'outro') NOT NULL,
     nome_arquivo VARCHAR(255) NOT NULL,
     caminho_arquivo VARCHAR(500) NOT NULL,
     verificado BOOLEAN DEFAULT FALSE,
     data_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id) ON DELETE CASCADE
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id) ON DELETE CASCADE
 );
 
 
@@ -197,14 +197,14 @@ CREATE TABLE pagamentos (
 CREATE TABLE relatorios_atendimento (
     id INT PRIMARY KEY AUTO_INCREMENT,
     agendamento_id INT NOT NULL,
-    cuidador_id INT NOT NULL,
+    profissional_id INT NOT NULL,
     relatorio TEXT NOT NULL,
     medicamentos_administrados TEXT,
     intercorrencias TEXT,
     observacoes_comportamento TEXT,
     data_relatorio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (agendamento_id) REFERENCES agendamentos(id),
-    FOREIGN KEY (cuidador_id) REFERENCES cuidadores(id)
+    FOREIGN KEY (profissional_id) REFERENCES profissionais(id)
 );
 
 
@@ -219,20 +219,6 @@ INSERT INTO especialidades (nome, descricao, categoria) VALUES
 ('Fisioterapia Básica', 'Exercícios básicos de fisioterapia e reabilitação', 'cuidados_especializados'),
 ('Organização do Ambiente', 'Manutenção da organização e limpeza do ambiente', 'domestico'),
 ('Cuidados Paliativos', 'Cuidados especializados para pacientes em estado terminal', 'cuidados_especializados');
-
--- Índices para otimização
-CREATE INDEX idx_usuarios_email ON usuarios(email);
-CREATE INDEX idx_usuarios_tipo ON usuarios(tipo_usuario);
-CREATE INDEX idx_cuidadores_nota ON cuidadores(nota_media);
-CREATE INDEX idx_agendamentos_data ON agendamentos(data_inicio);
-CREATE INDEX idx_agendamentos_status ON agendamentos(status);
-CREATE INDEX idx_agendamentos_cuidador ON agendamentos(cuidador_id);
-CREATE INDEX idx_mensagens_destinatario ON mensagens(destinatario_id, lida);
-CREATE INDEX idx_avaliacoes_avaliado ON avaliacoes(avaliado_id);
-CREATE INDEX idx_enderecos_usuario ON enderecos(usuario_id);
-CREATE INDEX idx_enderecos_idoso ON enderecos(idoso_id);
-CREATE INDEX idx_enderecos_cep ON enderecos(cep);
-CREATE INDEX idx_enderecos_cidade_estado ON enderecos(cidade, estado);
 
 -- Triggers para atualizar nota média dos cuidadores
 DELIMITER //
