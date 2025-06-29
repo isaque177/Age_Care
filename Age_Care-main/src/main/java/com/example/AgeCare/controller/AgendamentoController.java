@@ -1,5 +1,7 @@
 package com.example.AgeCare.controller;
 
+import org.springframework.web.bind.annotation.RestController;
+
 @RestController
 @RequestMapping("/api/agendamento")
 

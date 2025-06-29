@@ -1,5 +1,8 @@
-package com.example.AgeCare.repository;
+import com.example.AgeCare.model.ProfissionalModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class ProfissionalRepository {
+@Repository
+public interface ProfissionalRepository extends JpaRepository<ProfissionalModel, Long> {
 
 }
