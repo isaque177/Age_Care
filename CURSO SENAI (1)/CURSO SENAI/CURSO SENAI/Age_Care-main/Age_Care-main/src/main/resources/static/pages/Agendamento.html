@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgeCare - Agendamento</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assents/css/Agendamento.css">
+
+</head>
+<body>
+<header class="header">
+    <div class="container header-content">
+        <div class="logo-container">
+            <i class="fas fa-heartbeat logo-icon"></i>
+            <h1 class="logo-text">AgeCare</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#" title="Início"><i class="fas fa-home"></i></a></li>
+                <li><a href="#" title="Agendamentos"><i class="fas fa-calendar-alt"></i></a></li>
+                <li><a href="#" title="Favoritos"><i class="fas fa-heart"></i></a></li>
+                <li><a href="#" title="Mensagens"><i class="fas fa-comments"></i></a></li>
+                <li><a href="#" title="Notificações"><i class="fas fa-bell"></i></a></li>
+                <li><a href="#" title="Minha Conta"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="container">
+
+        <div class="service-details-card" id="professional-card">
+            <div class="service-image">
+                <img id="professional-image" src="https://via.placeholder.com/300x200?text=Carregando..." alt="Foto do Profissional">
+            </div>
+            <div class="service-info">
+                <h2 id="professional-name">Carregando...</h2>
+                <p class="service-meta">
+                    <span id="professional-specialty"><i class="fas fa-user-md"></i> Carregando...</span> <br>
+                    <span id="professional-location"><i class="fas fa-map-marker-alt"></i> Carregando...</span> <br>
+                    <span id="professional-registry"><i class="fas fa-id-card"></i> Carregando...</span> <br>
+                    <span id="professional-rating"><i class="fas fa-star"></i> Carregando...</span>
+                </p>
+                <div class="share-button">
+                    <button><img src="https://via.placeholder.com/20x20?text=🔗" alt="Compartilhar"> Compartilhar</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="scheduled-appointments-section">
+            <h3>Horários Agendados</h3>
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody id="agendamentos-marcados-container">
+                </tbody>
+            </table>
+        </section>
+
+        <section class="description-section">
+            <h3>Descrição do Serviço</h3>
+            <p>Selecione abaixo a data, horário e tipo de serviço desejado para agendar com o profissional.</p>
+            <a href="#" class="read-more">Ler mais</a>
+        </section>
+
+        <form id="agendamento-form">
+            <section class="scheduling-section">
+                <h3>Selecione uma data</h3>
+                <div class="date-picker">
+                    <button type="button" class="arrow" id="prev-date">&lt;</button>
+                    <div class="date-items" id="date-items-container"></div>
+                    <button type="button" class="arrow" id="next-date">&gt;</button>
+                </div>
+
+                <h3>Selecione um horário</h3>
+                <div class="time-picker">
+                    <button type="button" class="arrow" id="prev-time">&lt;</button>
+                    <div class="time-items" id="time-items-container"></div>
+                    <button type="button" class="arrow" id="next-time">&gt;</button>
+                </div>
+            </section>
+
+            <section class="service-selection-section">
+                <h3>Selecione um tipo de serviço</h3>
+                <div class="service-selection-container" id="service-cards-container">
+                </div>
+
+                <div class="total-price-section">
+                    <p class="total-label">Subtotal:</p>
+                    <p class="total-value" id="subtotal-value">R$ 0,00</p>
+                    <button type="submit" class="buy-button" id="btn-continuar">Continuar</button>
+                </div>
+            </section>
+        </form>
+
+        <section class="payment-methods-section">
+            <h3>Métodos de pagamento</h3>
+            <div class="payment-icons">
+                <img src="https://via.placeholder.com/50x30?text=VISA" alt="Visa">
+                <img src="https://via.placeholder.com/50x30?text=MASTERCARD" alt="Mastercard">
+                <img src="https://via.placeholder.com/50x30?text=PIX" alt="Pix">
+            </div>
+            <a href="#" class="more-options">Ver mais opções</a>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="security-info">
+            <h4>Compre com total segurança</h4>
+            <p>Os dados pessoais são criptografados e protegidos.</p>
+        </div>
+        <div class="help-info">
+            <h4>Precisando de ajuda?</h4>
+            <p>Acesse nossa Central de Ajuda ou entre em contato.</p>
+            <a href="#">Fale conosco</a>
+        </div>
+    </div>
+</footer>
+
+<script src="../assents/js/agendamento.js"></script> </body>
+</html>
