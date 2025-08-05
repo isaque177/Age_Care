@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - AgeCare</title>
+    <link rel="stylesheet" href="../assents/css/PerfilProfissional.css">
+
+    <style>
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed; z-index: 1; left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe; margin: 15% auto; padding: 20px;
+            border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 8px;
+        }
+        .close-button {
+            color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+        /* Estilos adicionais para clareza */
+        .profile-details p {
+            margin: 8px 0;
+        }
+        .profile-details strong {
+            display: inline-block;
+            width: 120px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #agendamentos-list-container tr:nth-child(even){background-color: #f9f9f9;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <aside class="profile-sidebar">
+    </aside>
+
+    <main class="main-content">
+        <section class="content-section" id="dados-profissionais">
+            <h2>Meus Dados</h2>
+            <div id="profile-details-container" class="profile-details">
+                <p><strong>Nome:</strong> <span id="prof-nome">Carregando...</span></p>
+                <p><strong>Email:</strong> <span id="prof-email">Carregando...</span></p>
+                <p><strong>Telefone:</strong> <span id="prof-telefone">Carregando...</span></p>
+                <p><strong>Especialidade:</strong> <span id="prof-especialidade">Carregando...</span></p>
+            </div>
+            <a href="#" class="edit-button" style="margin-top: 10px;">Editar Perfil</a>
+        </section>
+
+        <section class="content-section" id="agendamentos">
+            <h2>Meus Agendamentos</h2>
+            <div id="agendamentos-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Paciente</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="agendamentos-list-container">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="content-section" id="servicos">
+            <h2>Meus Serviços</h2>
+            <ul id="services-list-container" class="services-list" style="list-style: none; padding: 0;">
+            </ul>
+
+            <a href="#" id="btn-adicionar-servico" class="edit-button" style="margin-top: 10px;">Adicionar Novo Serviço</a>
+        </section>
+    </main>
+</div>
+
+<div id="modal-servico" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Cadastrar Novo Serviço</h2>
+        <form id="form-novo-servico">
+            <div class="form-group">
+                <label for="servico-nome">Nome do Serviço:</label>
+                <input type="text" id="servico-nome" required>
+            </div>
+            <div class="form-group">
+                <label for="servico-descricao">Descrição:</label>
+                <textarea id="servico-descricao" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="servico-preco">Preço (R$):</label>
+                <input type="number" id="servico-preco" step="0.01" required>
+            </div>
+            <button type="submit">Salvar Serviço</button>
+        </form>
+    </div>
+</div>
+
+<script src="../assents/js/perfilProfissional.js"></script>
+
+</body>
+</html>

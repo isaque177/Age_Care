@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../assents/css/Cadastro.css">
+</head>
+<body class="bg-light p-3">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow mt-5">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">Cadastro de Usuário</h4>
+
+
+                    <form id="formcadastro" onsubmit="cadastrar(event)">
+                        <div class="mb-3">
+                            <label class="form-label" for="idnome">Nome</label>
+                            <input type="text" class="form-control" id="idnome" name="nome" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="idcpf">CPF</label>
+                            <input type="text" class="form-control" id="idcpf" name="cpf" required maxlength="14" placeholder="000.000.000-00">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="idemail">Email</label>
+                            <input type="email" class="form-control" id="idemail" name="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="idsenha">Senha</label>
+                            <input type="password" class="form-control" id="idsenha" name="senha" required minlength="6">
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/Cadastro.js"></script>
+</body>
+</html>
