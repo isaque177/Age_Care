@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro Profissional | Age Care</title>
+  <link rel="stylesheet" href="../assents/css/CadastroProfissional.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">☀️</button>
+  <div class="container">
+    <div class="header">
+      <h1>Age Care</h1>
+    </div>
+    <div class="logo">
+      <img src="logo001.png" alt="Logo">
+    </div>
+    <button class="toggle-role" id="toggleClient">CLIENTE</button>
+    <div class="title">CADASTRO <small>PROFISSIONAL</small></div>
+
+    <!-- Loading indicator -->
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+      <div class="spinner"></div>
+      <p>Processando cadastro...</p>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/user--v1.png" alt="User Icon">
+      <input type="text" placeholder="Nome completo" id="nome" required>
+      <span class="error-message" id="error-nome"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/new-post.png" alt="Email Icon">
+      <input type="email" placeholder="Email profissional" id="email" required>
+      <span class="error-message" id="error-email"></span>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/phone.png" alt="Phone Icon">
+        <input type="tel" placeholder="Telefone" id="telefone" required>
+        <span class="error-message" id="error-telefone"></span>
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/id-card.png" alt="CPF Icon">
+        <input type="text" placeholder="CPF" id="cpf" required>
+        <span class="error-message" id="error-cpf"></span>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/marker.png" alt="CEP Icon">
+        <input type="text" placeholder="CEP" id="cep" required>
+        <span class="error-message" id="error-cep"></span>
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/city.png" alt="Cidade Icon">
+        <input type="text" placeholder="Cidade" id="cidade" required>
+        <span class="error-message" id="error-cidade"></span>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/marker.png" alt="Estado Icon">
+        <input type="text" placeholder="Estado" id="estado" required>
+        <span class="error-message" id="error-estado"></span>
+      </div>
+      <div class="input-group">
+        <img src="https://img.icons8.com/ios-glyphs/30/home.png" alt="Bairro Icon">
+        <input type="text" placeholder="Bairro" id="bairro" required>
+        <span class="error-message" id="error-bairro"></span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/home.png" alt="Endereço Icon">
+      <input type="text" placeholder="Endereço completo" id="endereco" required>
+      <span class="error-message" id="error-endereco"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/medical-bag.png" alt="Profession Icon">
+      <select id="profissao" required>
+        <option value="">Selecione sua profissão</option>
+        <option value="enfermeiro">Enfermeiro(a)</option>
+        <option value="tecnico-enfermagem">Técnico(a) em Enfermagem</option>
+        <option value="auxiliar-enfermagem">Auxiliar de Enfermagem</option>
+        <option value="cuidador">Cuidador(a) de Idosos</option>
+        <option value="fisioterapeuta">Fisioterapeuta</option>
+        <option value="medico">Médico(a)</option>
+        <option value="psicologo">Psicólogo(a)</option>
+        <option value="nutricionista">Nutricionista</option>
+        <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
+        <option value="assistente-social">Assistente Social</option>
+        <option value="outro">Outro</option>
+      </select>
+      <span class="error-message" id="error-profissao"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/certificate.png" alt="License Icon">
+      <input type="text" placeholder="Número do registro profissional (CRM, COREN, etc.)" id="registro" required>
+      <span class="error-message" id="error-registro"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/time.png" alt="Experience Icon">
+      <select id="experiencia" required>
+        <option value="">Tempo de experiência</option>
+        <option value="menos-1">Menos de 1 ano</option>
+        <option value="1-3">1 a 3 anos</option>
+        <option value="3-5">3 a 5 anos</option>
+        <option value="5-10">5 a 10 anos</option>
+        <option value="mais-10">Mais de 10 anos</option>
+      </select>
+      <span class="error-message" id="error-experiencia"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/lock--v1.png" alt="Password Icon">
+      <input type="password" placeholder="Digite sua senha (mín. 6 caracteres)" id="senha" required>
+      <span class="error-message" id="error-senha"></span>
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/lock--v1.png" alt="Confirm Password Icon">
+      <input type="password" placeholder="Confirme sua senha" id="confirmarSenha" required>
+      <span class="error-message" id="error-confirmarSenha"></span>
+    </div>
+
+    <button class="btn-submit" id="btnCadastro">Finalizar Cadastro</button>
+
+    <div class="separator">OU</div>
+
+    <button class="btn-google">Entrar com o Google</button>
+    <div class="footer-note">JÁ TEM UMA CONTA</div>
+    <button class="btn-login">FAÇA LOGIN</button>
+    
+    <!-- Área de confirmação e logs -->
+    <div id="confirmation" class="confirmation"></div>
+    <div id="debugLogs" class="debug-logs" style="display: none;"></div>
+    
+    <!-- Toggle para mostrar logs de debug -->
+    <button class="debug-toggle" id="debugToggle" style="display: none;">🐛 Logs</button>
+  </div>
+
+  <script src="../assents/js/CadastroProfissional.js"></script>
+</body>
+</html>

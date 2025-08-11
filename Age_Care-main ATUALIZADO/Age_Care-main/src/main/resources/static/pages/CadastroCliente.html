@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro | Age Care</title>
+  <link rel="stylesheet" href="../assents/css/CadastroCliente.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️</button>
+  <div class="container">
+    <div class="header">
+      <h1>Age Care</h1>
+    </div>
+    <!-- Logo comentada para evitar erro 404 -->
+    <!-- <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div> -->
+    
+    <button class="toggle-role">PROFISSIONAL</button>
+    <div class="title">CADASTRO <small>CLIENTE</small></div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/user--v1.png" alt="User Icon">
+      <input type="text" placeholder="Digite seu nome">
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/new-post.png" alt="Email Icon">
+      <input type="email" placeholder="Digite seu email">
+    </div>
+
+    <div class="input-group">
+      <img src="https://img.icons8.com/ios-glyphs/30/lock--v1.png" alt="Password Icon">
+      <input type="password" placeholder="Digite sua senha">
+    </div>
+
+    <button class="btn-submit">Finalizar Cadastro</button>
+
+    <div class="separator">OU</div>
+
+    <button class="btn-google">Entrar com o Google</button>
+    <div class="footer-note">JÁ TEM UMA CONTA</div>
+    <button class="btn-login">FAÇA LOGIN</button>
+    <div id="confirmation" class="confirmation"></div>
+  </div>
+
+  <script src="../assents/js/CadastroCliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Care - Cadastro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+        :root {
+            --primary-color: #2C4EDC;
+            --primary-hover: #1e3bb8;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --border-color: #e2e8f0;
+            --success-color: #48bb78;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(44, 78, 220, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(44, 78, 220, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-color), #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44, 78, 220, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(44, 78, 220, 0.1), rgba(102, 126, 234, 0.1));
+            transform: scale(1.02);
+        }
+
+        .option h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .option p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .guest-option {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-color: #cbd5e0;
+        }
+
+        .guest-option:hover {
+            border-color: #a0aec0;
+            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+        }
+
+        .guest-option.selected {
+            border-color: #718096;
+            background: linear-gradient(135deg, rgba(113, 128, 150, 0.1), rgba(160, 174, 192, 0.1));
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, var(--primary-color), #667eea);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .continue-btn:disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .continue-btn:not(:disabled):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(44, 78, 220, 0.4);
+        }
+
+        .continue-btn:not(:disabled):active {
+            transform: translateY(0);
+        }
+
+        .help {
+            margin-top: 1.5rem;
+        }
+
+        .help a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .help a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* Icons */
+        .option-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .option {
+                padding: 1.25rem;
+            }
+
+            .option h2 {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://via.placeholder.com/80x80/2C4EDC/ffffff?text=AC" alt="Logo Age Care">
+        </div>
+        
+        <h1>Como você deseja continuar?</h1>
+        <p class="subtitle">Escolha uma opção para acessar o <strong>Age Care</strong></p>
+
+        <div class="options">
+            <div class="option" onclick="selectOption('cliente')" id="cliente">
+                <h2><span class="option-icon">👤</span>Cliente</h2>
+                <p>Sou responsável, familiar ou contratante do serviço</p>
+            </div>
+
+            <div class="option" onclick="selectOption('profissional')" id="profissional">
+                <h2><span class="option-icon">⚕️</span>Profissional</h2>
+                <p>Sou cuidador, técnico de enfermagem ou enfermeiro(a)</p>
+            </div>
+
+            <div class="option guest-option" onclick="selectOption('convidado')" id="convidado">
+                <h2><span class="option-icon">🚪</span>Entrar sem cadastro</h2>
+                <p>Explorar o sistema como visitante (funcionalidades limitadas)</p>
+            </div>
+        </div>
+
+        <button id="continueBtn" class="continue-btn" disabled onclick="handleContinue()">
+            Continuar
+        </button>
+
+        <p class="help">
+            <a href="#" onclick="showHelp()">Dúvidas sobre cada perfil?</a>
+        </p>
+    </div>
+
+    <script>
+        let selected = null;
+        let isLoading = false;
+
+        function selectOption(optionId) {
+            if (isLoading) return;
+            
+            // Remove seleção anterior
+            if (selected) {
+                document.getElementById(selected).classList.remove('selected');
+            }
+
+            // Seleciona nova opção
+            selected = optionId;
+            document.getElementById(optionId).classList.add('selected');
+
+            // Habilita botão
+            document.getElementById('continueBtn').disabled = false;
+        }
+
+        function handleContinue() {
+            if (!selected || isLoading) return;
+
+            isLoading = true;
+            const btn = document.getElementById('continueBtn');
+            const originalText = btn.innerHTML;
+            
+            // Mostra loading
+            btn.innerHTML = '<span class="loading"></span> Carregando...';
+            btn.disabled = true;
+
+            // Simula delay de carregamento
+            setTimeout(() => {
+                switch(selected) {
+                    case 'cliente':
+                        // Redireciona para cadastro de cliente
+                        window.location.href = 'CadastroCliente.html';
+                        break;
+                    case 'profissional':
+                        // Redireciona para cadastro de profissional
+                        window.location.href = 'CadastroProfissional.html';
+                        break;
+                    case 'convidado':
+                        // Redireciona para dashboard como convidado
+                        window.location.href = 'index.html';
+                        break;
+                    default:
+                        alert('Opção inválida');
+                        isLoading = false;
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function showHelp() {
+            const helpText = `
+📋 TIPOS DE PERFIL:
+
+👤 CLIENTE
+• Para familiares, responsáveis ou contratantes
+• Acesso completo para solicitar serviços
+• Gerenciamento de contratos e pagamentos
+• Acompanhamento em tempo real
+
+⚕️ PROFISSIONAL  
+• Para cuidadores, enfermeiros e técnicos
+• Recebimento de solicitações de trabalho
+• Gerenciamento de agenda e atendimentos
+• Histórico profissional e avaliações
+
+🚪 CONVIDADO
+• Acesso limitado sem cadastro
+• Visualização de informações gerais
+• Não permite solicitações ou contratações
+• Ideal para conhecer o sistema
+            `;
+            
+            alert(helpText);
+        }
+
+        // Adiciona efeitos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !document.getElementById('continueBtn').disabled) {
+                handleContinue();
+            }
+            
+            if (e.key >= '1' && e.key <= '3') {
+                const options = ['cliente', 'profissional', 'convidado'];
+                const index = parseInt(e.key) - 1;
+                if (options[index]) {
+                    selectOption(options[index]);
+                }
+            }
+        });
+
+        // Animação de entrada suave
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
